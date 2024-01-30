@@ -5,7 +5,7 @@ from .models import Product
 
 class ProductList(ListView):
     model = Product
-    template_name = "products.html"
+    template_name = "index.html"
     context_object_name = 'products'
     poginate_by = 2
 

@@ -1,34 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Products{% endblock %}
 
-{% block content %}
-<div style="display: inline-flex; max-width: fit-content;">
-{% for product in products %}
-<div style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="container-content">
-                <img class="picture" src="/media/{{product.image}}" alt="product">
-                <p class="price">{{product.price}} р. :: {{product.stock}} ед.</p>
-                <a href="/{{product.id}}"><p class="name">{{product.name}}</p></a>
-                <p class="name">Описание: {{product.description|truncatewords:4}}</p>
-        </div>
-</div>
-{% endfor %}
-</div>
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+{% block products %}
+<div class="row">
+   <div class="col-md-12">
+      <div class="our_products">
+         <div class="row">
+            <div class="col-md-4 margin_bottom1">
+            </div>
+            <div class="col-md-4 margin_bottom1">
+               <div class="product_box">
+                  <figure><img class="picture" src="/media/{{product.image}}" width="200px" height="200px" alt="product"></figure>
+                  <h2>{{product.name}}</h2>
+                  <h2>{{product.price}} р.</h2>
+                  <h2>{{product.stock}} ед. </h2>
+                  <h2>{% if product.available %}Доступен{% else %}Недоступен{% endif %}</h2>
+                  <p class="name">Описание: {{product.description}}</p>
+                  <p class="name">Категория товара: {{product.subcategory.name}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
 {% endblock %}
