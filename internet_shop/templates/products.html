@@ -2,32 +2,15 @@
 {% block title %}Products{% endblock %}
 
 {% block content %}
-<div style="display: inline-flex; flex-wrap: wrap; max-width: fit-content;">
+<div style="display: inline-flex; max-width: fit-content;">
 {% for product in products %}
-
-<div>
-        <div>
-                <span role="presentation">
-                        <img width="128px" height="128px" src="/media/{{product.image}}">
-                </span>
+<div style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="container-content">
+                <img class="picture" src="/media/{{product.image}}" alt="product">
+                <p class="price">{{product.price}} р. :: {{product.stock}} ед.</p>
+                <a class="name" href="/{{product.id}}">{{product.name}}</a>
         </div>
-        <div >
-                <a>
-                        <div role="button">
-                                {{product.name}}
-                        </div>
-                </a>
-        </div>
-<div>
-        <section>
-                <div>
-                        {{product.price}} р. :: {{product.stock}} ед.
-                </div>
-        </section>
 </div>
-
-</div>
-
 {% endfor %}
 </div>
 {% endblock %}
